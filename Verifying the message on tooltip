@@ -1,0 +1,18 @@
+public static void GetToolTipText(IWebElement element,string message)
+        {
+            try
+            {
+                Actions action = new Actions(Browser.webDriver);
+                action.MoveToElement(element).Build().Perform();
+                IWebElement toolTipElement = element;
+                string tooltipText = toolTipElement.GetAttribute("mattooltip");
+                if (tooltipText.Equals(message))
+                {
+                    PageBase.WriteLog(Logger.LogLevel.Success, "Successfuly verified tool tip as :" +message);
+                }
+            }
+            catch(Exception ex)
+            {
+                PageBase.WriteLog(Logger.LogLevel.Error, "Unable to verify the tooltip as :"+message);
+            }
+        }
